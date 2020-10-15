@@ -58,3 +58,9 @@ gem 'devise'
 gem 'mini_magick'
 
 gem 'image_processing'
+
+group :production do
+  gem 'rails_12factor'
+end
+
+gem 'pry-rails'

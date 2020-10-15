@@ -2,9 +2,9 @@
   <div class="inner">
     <div class="prototype__wrapper">
       <p class="prototype__hedding">
-        <%= "プロトタイプのタイトル"%>
+        <%= @prototype.title %>
       </p>
-      <%= link_to "by #{@prototype.user.name}", root_path, class: :prototype__user %>
+      <%= link_to "by #{@prototype.user.name}", prototype_path(@prototype.id), class: :prototype__user %>
       <%# プロトタイプの投稿者とログインしているユーザーが同じであれば以下を表示する %>
        <% if current_user == @prototype.user %>
         <div class="prototype__manage">
@@ -33,7 +33,7 @@
       <div class="prototype__comments">
         <%# ログインしているユーザーには以下のコメント投稿フォームを表示する %>
         <% if user_signed_in? %>
-          <%= form_with model: @comment, url: prototype_comments_path(@prototype.id), local: true do |f| %>
+          <%= form_with(model: [@prototype,@comment], local: true) do |f| %>
             <div class="field">
                <%= f.label :text, "コメント" %><br />
               <%= f.text_field :text %>
